@@ -1,4 +1,39 @@
 
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    
+    info.changeScoreBy(1)
+})
+
+
+game.onUpdateInterval(1000, function  () {
+
+    let killMe = sprites.create(img`
+            ....ffffff.........888..
+            ....ff2288f.......884f..
+            .....ff8888fff...8844f..
+            ....88244422228888442f..
+            ...89b442222222288422f..
+            ..8999b2222222222222f8..
+            .82b99111b2222222228228.
+            8222b111992222888888822f
+            f222222222222822288fffff
+            .f2222222222442222f.....
+            ..ff22222228f442222f....
+            ....ffffffffff4422228...
+            .........f28fff822228...
+            .........f882ffffffff...
+            ..........f82ffff.......
+            ...........fffff........
+        `, SpriteKind.Enemy)
+    killMe.setVelocity(-40, 0)
+    killMe.setPosition(160, randint(0, 120))
+    killMe.setFlag(SpriteFlag.AutoDestroy, true)
+})
+
+
+
+
+
 let ship = sprites.create(img`
     ........feebbbef........
     ........f24bdb2e........
@@ -17,3 +52,9 @@ let ship = sprites.create(img`
     ......ffffbbbbfffff.....
     ..........fffff.........
 `, SpriteKind.Player)
+ship.setPosition(10, 60)
+controller.moveSprite(ship, 0, 100)
+ship.setFlag(SpriteFlag.StayInScreen, true)
+
+
+info.setScore(0)
