@@ -1,11 +1,17 @@
 
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite: Sprite, otherSprite: Sprite) {
+    game.over(false)
+})
+
+
+
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     
     info.changeScoreBy(1)
 })
 
-
-game.onUpdateInterval(1000, function  () {
+let timeInterval = 1000
+game.onUpdateInterval(timeInterval, function  () {
 
     let killMe = sprites.create(img`
         ....ffffff.........888..
@@ -30,21 +36,33 @@ game.onUpdateInterval(1000, function  () {
 
     if (info.score() <= 10){
         killMe.setVelocity(-40, 0);
+        controller.moveSprite(ship, 0, 100)
+        timeInterval = 1000
     }
     else if(info.score() >= 11 && info.score() <= 20){
         killMe.setVelocity(-60, 0)
+        controller.moveSprite(ship, 0, 150)
+        timeInterval = 800
     } 
     else if (info.score() >= 21 && info.score() <= 30) {
         killMe.setVelocity(-80, 0)
+        controller.moveSprite(ship, 0, 200)
+        timeInterval = 600
     }
     else if (info.score() >= 31 && info.score() <= 40) {
         killMe.setVelocity(-100, 0)
+        controller.moveSprite(ship, 0, 250)
+        timeInterval = 400
     }
     else if (info.score() >= 41 && info.score() <= 50) {
         killMe.setVelocity(-120, 0)
+        controller.moveSprite(ship, 0, 300)
+        timeInterval = 200
     }
     else if (info.score() >50) {
         killMe.setVelocity(-140, 0)
+        controller.moveSprite(ship, 0, 350)
+        timeInterval = 100
     }
 })
 
@@ -76,3 +94,5 @@ ship.setFlag(SpriteFlag.StayInScreen, true)
 
 
 info.setScore(0)
+
+
