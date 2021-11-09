@@ -8,26 +8,44 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
 game.onUpdateInterval(1000, function  () {
 
     let killMe = sprites.create(img`
-            ....ffffff.........888..
-            ....ff2288f.......884f..
-            .....ff8888fff...8844f..
-            ....88244422228888442f..
-            ...89b442222222288422f..
-            ..8999b2222222222222f8..
-            .82b99111b2222222228228.
-            8222b111992222888888822f
-            f222222222222822288fffff
-            .f2222222222442222f.....
-            ..ff22222228f442222f....
-            ....ffffffffff4422228...
-            .........f28fff822228...
-            .........f882ffffffff...
-            ..........f82ffff.......
-            ...........fffff........
-        `, SpriteKind.Enemy)
-    killMe.setVelocity(-40, 0)
+        ....ffffff.........888..
+        ....ff2288f.......884f..
+        .....ff8888fff...8844f..
+        ....88244422228888442f..
+        ...89b442222222288422f..
+        ..8999b2222222222222f8..
+        .82b99111b2222222228228.
+        8222b111992222888888822f
+        f222222222222822288fffff
+        .f2222222222442222f.....
+        ..ff22222228f442222f....
+        ....ffffffffff4422228...
+        .........f28fff822228...
+        .........f882ffffffff...
+        ..........f82ffff.......
+        ...........fffff........
+    `, SpriteKind.Enemy)
     killMe.setPosition(160, randint(0, 120))
     killMe.setFlag(SpriteFlag.AutoDestroy, true)
+
+    if (info.score() <= 10){
+        killMe.setVelocity(-40, 0);
+    }
+    else if(info.score() >= 11 && info.score() <= 20){
+        killMe.setVelocity(-60, 0)
+    } 
+    else if (info.score() >= 21 && info.score() <= 30) {
+        killMe.setVelocity(-80, 0)
+    }
+    else if (info.score() >= 31 && info.score() <= 40) {
+        killMe.setVelocity(-100, 0)
+    }
+    else if (info.score() >= 41 && info.score() <= 50) {
+        killMe.setVelocity(-120, 0)
+    }
+    else if (info.score() >50) {
+        killMe.setVelocity(-140, 0)
+    }
 })
 
 
